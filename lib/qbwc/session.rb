@@ -41,7 +41,7 @@ class QBWC::Session
       self.progress = 100
       return nil
     end
-    until (request = current_job.next_request) do
+    until (request = current_job.next_request(self)) do
       pending_jobs.shift
       reset(true) or break
     end
