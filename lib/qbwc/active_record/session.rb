@@ -47,6 +47,11 @@ class QBWC::ActiveRecord::Session < QBWC::Session
       @session.send("#{method}=", value)
     end
   end
-  protected :progress=, :iterator_id=, :iterator_id
+
+  def id
+   @session.id
+  end
+
+  protected :progress=, :iterator_id=
 
 end

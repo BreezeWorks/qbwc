@@ -87,7 +87,7 @@ class QBWC::Job
   def next_request
     # Generate and save the requests to run when starting the job.
     if (requests.nil? || requests.empty?) && ! self.requests_provided_when_job_added
-      r = worker.requests(self)
+      r = worker.requests(self,session)
       r = [r] unless r.nil? || r.is_a?(Array)
       self.requests = r
     end
