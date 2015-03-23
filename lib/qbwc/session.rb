@@ -1,7 +1,7 @@
 class QBWC::Session
 
   attr_reader :user, :company, :ticket, :progress
-  attr_accessor :error, :status_code, :status_severity
+  attr_accessor :error, :status_code, :status_severity, :client_company_filename
 
   @@session = nil
 
