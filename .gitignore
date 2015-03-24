@@ -1,3 +1,7 @@
 .rvmrc 
 Gemfile.lock
 pkg
+
+# Ignore IDE workspace
+.idea
+.project
