@@ -128,6 +128,7 @@ QWC
 
     def send_request
       @session.client_company_filename = params[:strCompanyFileName]
+      @session.company = params[:strCompanyFileName] if @session.company.blank?
 
       request = @session.request_to_send
       render :soap => {'tns:sendRequestXMLResult' => request}
