@@ -17,7 +17,7 @@ class QBWC::Job
   end
 
   def process_response(qbxml_response, response, session, advance)
-    QBWC.logger.info "Processing response."
+    # QBWC.logger.info "Processing response."
     completed_request = requests[request_index]
     advance_next_request if advance
     QBWC.logger.info "Job '#{name}' received response: '#{qbxml_response}'." if QBWC.log_requests_and_responses
@@ -26,7 +26,7 @@ class QBWC::Job
 
   def advance_next_request
     new_index = request_index + 1
-    QBWC.logger.info "Job '#{name}' advancing to request #'#{new_index}'."
+    # QBWC.logger.info "Job '#{name}' advancing to request #'#{new_index}'."
     self.request_index = new_index
   end
 
@@ -40,11 +40,11 @@ class QBWC::Job
 
   def pending?
     if !enabled?
-      QBWC.logger.info "Job '#{name}' not enabled."
+      # QBWC.logger.info "Job '#{name}' not enabled."
       return false
     end
     sr = worker.should_run?(self)
-    QBWC.logger.info "Job '#{name}' should_run?: #{sr}."
+    # QBWC.logger.info "Job '#{name}' should_run?: #{sr}."
     return sr
   end
 
@@ -94,7 +94,7 @@ class QBWC::Job
 
     QBWC.logger.info("Requests available are '#{requests}'.") if QBWC.log_requests_and_responses
     ri = request_index
-    QBWC.logger.info("Request index is '#{ri}'.")
+    # QBWC.logger.info("Request index is '#{ri}'.")
     return nil if ri.nil? || requests.nil? || ri >= requests.length
     nr = requests[ri]
     QBWC.logger.info("Next request is '#{nr}'.") if QBWC.log_requests_and_responses

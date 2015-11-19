@@ -65,7 +65,7 @@ class QBWC::Session
   def request_to_send
     current_job_name = current_job.name
     request = current_request.try(:request) || ''
-    QBWC.logger.info("Sending request from job #{current_job_name}")
+    # QBWC.logger.info("Sending request from job #{current_job_name}")
     QBWC.logger.info(request) if QBWC.log_requests_and_responses
 
     request
@@ -73,7 +73,7 @@ class QBWC::Session
 
   def response=(qbxml_response)
     begin
-      QBWC.logger.info 'Parsing response.'
+      # QBWC.logger.info 'Parsing response.'
       unless qbxml_response.nil?
         response = QBWC.parser.from_qbxml(qbxml_response)["qbxml"]["qbxml_msgs_rs"].except("xml_attributes")
         response = response[response.keys.first]
@@ -115,7 +115,7 @@ class QBWC::Session
   end
 
   def parse_response_header(response)
-    QBWC.logger.info 'Parsing headers.'
+    # QBWC.logger.info 'Parsing headers.'
 
     self.iterator_id = nil
     self.error = nil
@@ -130,7 +130,7 @@ class QBWC::Session
     @status_code, @status_severity, status_message, iterator_remaining_count, iterator_id = \
       response['xml_attributes'].values_at('statusCode', 'statusSeverity', 'statusMessage', 
                                                'iteratorRemainingCount', 'iteratorID')
-    QBWC.logger.info "Parsed headers. statusSeverity: '#{status_severity}'. statusCode: '#{@status_code}'"
+    # QBWC.logger.info "Parsed headers. statusSeverity: '#{status_severity}'. statusCode: '#{@status_code}'"
 
     if @status_severity == 'Error' || @status_severity == 'Warn'
       self.error = "QBWC #{@status_severity.upcase}: #{@status_code} - #{status_message}"
